@@ -6,7 +6,7 @@ use Redis;
 
 class Varnish {
 
-	const CHANNEL = 'varnish.purge';
+	const CHANNEL = 'varnish:purge';
 
 	public function purge($domain = null, array $routes = array())
 	{
