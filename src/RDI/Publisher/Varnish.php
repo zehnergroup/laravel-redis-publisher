@@ -2,9 +2,18 @@
 
 namespace RDI\Publisher;
 
+use Redis;
+
 class Varnish {
 
-	public function purge()
+	const CHANNEL = 'varnish.purge';
+
+	public function purge($domain = null, array $routes = array())
 	{
+		if (is_string($domain) && !empty($domain) && !empty($routes)) {
+			$purge_routes = json_encode(array('domain' => $domain, 'routes' => $routes));
+			$redis = Redis::connection();
+			$redis->publish(self::CHANNEL, $purge_routes);
+		}
 	}
 }
