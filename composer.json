@@ -1,5 +1,5 @@
 {
-    "name": "zehnergroup/publisher",
+    "name": "zehnergroup/redispub",
     "description": "",
     "authors": [
         {
@@ -13,7 +13,7 @@
     },
     "autoload": {
         "psr-0": {
-            "ZehnerGroup\\Publisher": "src/"
+            "ZehnerGroup\\RedisPub": "src/"
         }
     },
     "minimum-stability": "stable"

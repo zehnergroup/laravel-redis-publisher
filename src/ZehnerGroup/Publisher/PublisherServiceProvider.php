@@ -1,10 +1,10 @@
-<?php namespace ZehnerGroup\Publisher;
+<?php namespace ZehnerGroup\RedisPub;
 
 use Illuminate\Support\ServiceProvider;
 
 use Event;
 
-class PublisherServiceProvider extends ServiceProvider {
+class RedisPubServiceProvider extends ServiceProvider {
 
 	/**
 	 * Indicates if loading of the provider is deferred.
@@ -28,7 +28,7 @@ class PublisherServiceProvider extends ServiceProvider {
 		$this->app->booting(function()
 		{
 			$loader = \Illuminate\Foundation\AliasLoader::getInstance();
-			$loader->alias('Varnish', 'ZehnerGroup\Publisher\Facades\Varnish');
+			$loader->alias('Varnish', 'ZehnerGroup\RedisPub\Facades\Varnish');
 		});
 
 		Event::listen('varnish.*', function($domain, $routes)
