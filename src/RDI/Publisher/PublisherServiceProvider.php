@@ -1,4 +1,4 @@
-<?php namespace RDI\Publisher;
+<?php namespace ZehnerGroup\Publisher;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -28,7 +28,7 @@ class PublisherServiceProvider extends ServiceProvider {
 		$this->app->booting(function()
 		{
 			$loader = \Illuminate\Foundation\AliasLoader::getInstance();
-			$loader->alias('Varnish', 'RDI\Publisher\Facades\Varnish');
+			$loader->alias('Varnish', 'ZehnerGroup\Publisher\Facades\Varnish');
 		});
 
 		Event::listen('varnish.*', function($domain, $routes)

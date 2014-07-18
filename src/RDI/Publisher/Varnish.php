@@ -1,6 +1,6 @@
 <?php
 
-namespace RDI\Publisher;
+namespace ZehnerGroup\Publisher;
 
 use Redis;
 

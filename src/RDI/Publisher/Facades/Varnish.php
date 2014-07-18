@@ -1,6 +1,6 @@
 <?php
 
-namespace RDI\Publisher\Facades;
+namespace ZehnerGroup\Publisher\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
