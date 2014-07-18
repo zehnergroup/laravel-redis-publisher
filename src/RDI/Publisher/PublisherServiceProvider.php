@@ -2,6 +2,8 @@
 
 use Illuminate\Support\ServiceProvider;
 
+use Event;
+
 class PublisherServiceProvider extends ServiceProvider {
 
 	/**
@@ -28,6 +30,15 @@ class PublisherServiceProvider extends ServiceProvider {
 			$loader = \Illuminate\Foundation\AliasLoader::getInstance();
 			$loader->alias('Varnish', 'RDI\Publisher\Facades\Varnish');
 		});
+
+		Event::listen('varnish.*', function($domain, $routes)
+	  {
+			$varnish = new Varnish;
+
+			if (Event::firing() == 'varnish.ban') {
+				$varnish->ban($domain, $routes);
+			}
+	  });
 	}
 
 	/**
