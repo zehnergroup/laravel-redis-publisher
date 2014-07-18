@@ -8,7 +8,7 @@ class Varnish {
 
 	const CHANNEL = 'varnish:purge';
 
-	public function purge($domain = null, array $routes = array())
+	public function ban($domain = null, array $routes = array())
 	{
 		if (is_string($domain) && !empty($domain) && !empty($routes)) {
 			$purge_routes = json_encode(array('domain' => $domain, 'routes' => $routes));
