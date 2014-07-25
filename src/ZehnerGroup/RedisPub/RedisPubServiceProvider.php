@@ -46,7 +46,7 @@ class RedisPubServiceProvider extends ServiceProvider {
 			$loader->alias('Varnish', 'ZehnerGroup\RedisPub\Facades\Varnish');
 		});
 
-		Event::listen('varnish.*', function($domain, $routes)
+		Event::listen('varnish.*', function($domain, $routes) use ($app)
 		{
 			$varnish = new Varnish;
 			$varnish->setChannel($app['config']->get('redispub::channel'));
