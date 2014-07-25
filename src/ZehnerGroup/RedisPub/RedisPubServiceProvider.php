@@ -14,15 +14,30 @@ class RedisPubServiceProvider extends ServiceProvider {
 	protected $defer = false;
 
 	/**
+	 * Bootstrap the application events.
+	 *
+	 * @return void
+	 */
+	public function boot()
+	{
+		$this->package('zehnergroup/redispub');
+	}
+
+	/**
 	 * Register the service provider.
 	 *
 	 * @return void
 	 */
 	public function register()
 	{
+		$app = $this->app;
+
 		$this->app['varnish'] = $this->app->share(function($app)
 		{
-			return new Varnish;
+			$varnish = new Varnish;
+			$varnish->setChannel($app['config']->get('redispub::channel'));
+
+			return $varnish;
 		});
 
 		$this->app->booting(function()
@@ -32,13 +47,14 @@ class RedisPubServiceProvider extends ServiceProvider {
 		});
 
 		Event::listen('varnish.*', function($domain, $routes)
-	  {
+		{
 			$varnish = new Varnish;
+			$varnish->setChannel($app['config']->get('redispub::channel'));
 
 			if (Event::firing() == 'varnish.ban') {
 				$varnish->ban($domain, $routes);
 			}
-	  });
+		});
 	}
 
 	/**
