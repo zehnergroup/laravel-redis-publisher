@@ -6,14 +6,25 @@ use Redis;
 
 class Varnish {
 
-	const CHANNEL = 'varnish:purge';
+	private $channel = '';
+
+	public function setChannel($channel)
+	{
+		$this->channel = $channel;
+		return $this;
+	}
+
+	public function getChannel()
+	{
+		return $this->channel;
+	}
 
 	public function ban($domain = null, array $routes = array())
 	{
 		if (is_string($domain) && !empty($domain) && !empty($routes)) {
 			$purge_routes = json_encode(array('domain' => $domain, 'routes' => $routes));
 			$redis = Redis::connection();
-			$redis->publish(self::CHANNEL, $purge_routes);
+			$redis->publish($this->getChannel(), $purge_routes);
 		}
 	}
 }
