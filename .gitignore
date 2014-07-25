@@ -1,0 +1,28 @@
+# IDE / Text Editors backup files #
+###################################
+*#
+*.swo*
+*.swp*
+.*.sw[a-z]
+*.un~
+*~
+.#*
+.lvimrc
+*.vimrc*
+\#*#
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+._.DS_Store
+Icon?
+Thumbs.db
+ehthumbs.db
+
+# Ignore auto generated files #
+###############################
+/vendor
+composer.phar
+composer.lock
